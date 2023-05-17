@@ -49,29 +49,35 @@ Sun_Seeker empowers renewable energy enthusiasts and solar power systems by prov
 Building a solar tracker using ESP32, MPU-6050, GPS, and Edge Impulse sounds like an interesting project! Here's a guide to help you get started:
 
 1. **Hardware setup:**
+
    - ESP32: Use the ESP32 development board as the main microcontroller.
    - MPU-6050: Connect the MPU-6050 sensor module to the ESP32 to measure the tilt and rotation angles.
    - GPS: Connect the GPS module to the ESP32 for obtaining precise location coordinates.
    - Solar panel and servo motors: Attach the solar panel to a dual-axis mechanism controlled by servo motors. This will allow the solar panel to tilt and rotate based on the sensor data.
 
 2. **Sensor integration:**
+
    - Read MPU-6050 data: Utilize the ESP32's I2C interface to communicate with the MPU-6050 sensor and obtain the tilt and rotation angles.
    - GPS data acquisition: Use the ESP32's serial communication capabilities to retrieve GPS data such as latitude and longitude.
 
 3. **Sensor fusion:**
+
    - Combine sensor data: Process the data from MPU-6050 and GPS to calculate the current position of the sun relative to the solar panel's position.
    - Sensor fusion algorithm: Implement sensor fusion algorithms like complementary filter or Kalman filter to obtain accurate and stable orientation information.
 
 4. **Controlling servo motors:**
+
    - Servo library: Utilize a servo library compatible with the ESP32 to control the servo motors based on the calculated angles.
    - PID control: Implement a PID control algorithm to adjust the servo positions smoothly and accurately, ensuring precise tracking of the sun's movement.
 
 5. **Edge Impulse integration:**
+
    - Data collection: Use Edge Impulse's data acquisition tools to gather sensor data from the MPU-6050 and GPS for training and validation.
    - Model development: Train a machine learning model in Edge Impulse to predict the sun's position based on the sensor data.
    - Model deployment: Deploy the trained model to the ESP32, enabling it to make real-time predictions for the solar tracker's movement.
 
 6. **Power management:**
+
    - Power supply: Consider a suitable power source, such as a battery or a combination of solar panels and a battery, to power the ESP32 and the servo motors.
    - Power optimization: Implement power-saving techniques, such as sleep modes or duty cycling, to conserve energy and extend the system's operation time.
 
