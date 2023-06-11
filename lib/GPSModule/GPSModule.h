@@ -17,6 +17,8 @@ public:
     int charsProcessed();
     tmElements_t getTime();
     tmElements_t getDate();
+    float  lat();
+    float lon();
 
 private:
     static const uint8_t digits = 3;
@@ -25,6 +27,8 @@ private:
     uint32_t baudRate;
     TinyGPSPlus gps;
     SoftwareSerial ss;
+
+    
 };
 
 #endif

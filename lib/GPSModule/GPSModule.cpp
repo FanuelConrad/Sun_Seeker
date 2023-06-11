@@ -60,19 +60,27 @@ int GPSModule::charsProcessed()
 
 tmElements_t GPSModule::getTime()
 {
-    int someS = gps.time.second(); // second
-    int someM = gps.time.minute(); // minute
-    int someH = gps.time.hour();   // hour
-    tmElements_t someTime = {someS, someM, someH, 0, gps.date.day(), gps.date.month(), CalendarYrToTm(gps.date.year())};
+    int second = gps.time.second(); // second
+    int minute = gps.time.minute(); // minute
+    int hour = gps.time.hour();   // hour
+    tmElements_t someTime = {second, minute, hour, 0, gps.date.day(), gps.date.month(), CalendarYrToTm(gps.date.year())};
 
     return someTime;
 }
 
 tmElements_t GPSModule::getDate()
 {
-    int someD = gps.date.day();    // day
-    int someMo = gps.date.month(); // month
-    int someY = gps.date.year();   // year
-    tmElements_t someDate = {0, 0, 0, 0, someD, someMo, CalendarYrToTm(someY)};
+    int day = gps.date.day();    // day
+    int month = gps.date.month(); // month
+    int year = gps.date.year();   // year
+    tmElements_t someDate = {0, 0, 0, 0, day, month, CalendarYrToTm(year)};
     return someDate;
+}
+
+float GPSModule::lat(){
+    return gps.location.lat();
+}
+
+float GPSModule::lon(){
+    return gps.location.lng();
 }
