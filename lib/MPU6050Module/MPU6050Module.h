@@ -4,11 +4,17 @@
 #include <Arduino.h>
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
-#include "Angle.h"
+
+
+struct angle
+{
+    float x, y, z;
+};
 
 class MPU6050Module
 {
 public:
+    MPU6050Module();
     angle position;
 
     unsigned long lastSampleMicros = 0;

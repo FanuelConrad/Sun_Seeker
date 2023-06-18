@@ -1,5 +1,4 @@
 #include "MPU6050Module.h"
-#include "Angle.h"
 
 MPU6050Module::MPU6050Module()
 {

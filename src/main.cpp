@@ -33,8 +33,39 @@ float gpsLongitude=0.0;
 
 //Function to read accelerometer data and update the current orientation
 void updateOrientation(){
-  
+  //Map accelerometer values to pan and tilt angles
+  currentPanAngle=map(mpu6050Module.position.x,-180,180,0,MAX_PAN_ANGLE);
+  Serial.println((String)"Current pan angle:"+currentPanAngle);
+  currentTiltAngle=map(mpu6050Module.position.y,-180,180,0,MAX_TILT_ANGLE);
+  Serial.println((String)"Current tilt angle:"+currentTiltAngle);
 }
+
+//Function to calculate desired pan and tilt angles based on GPS location
+void calculateDesiredAngles(){
+  desiredPanAngle=solarModule.azimuth;
+  Serial.println((String)"Desired pan angle:"+desiredPanAngle);
+  desiredTiltAngle=solarModule.elevation;
+  Serial.println((String)"Desired tilt angle:"+desiredTiltAngle);
+}
+
+// Function to update the solar panel orientation based on the desired angles
+void updateSolarPanelOrientation(){
+  //Calculate the deviation between desired and current angles
+  float panDeviation=desiredPanAngle-currentPanAngle;
+  Serial.println((String)"Pan deviation:"+panDeviation);
+  float tiltDeviation=desiredTiltAngle-currentTiltAngle;
+  Serial.println((String)"Tilt deviation:"+tiltDeviation);
+
+  //Calculate servo position based on deviation
+  int panServoPosition=map(panDeviation,-180,180,0,180);
+  Serial.println((String)"Pan servo position:"+panServoPosition);
+  int tiltServoPosition=map(tiltDeviation,-90,90,0,180);
+  Serial.println((String)"Tilt servo position:"+tiltServoPosition);
+
+  //Set the servo position
+  setServoPositions(panServoPosition,tiltServoPosition);
+}
+
 
 void setup()
 {
@@ -48,6 +79,7 @@ void loop()
   gpsModule.update();
   if(gpsModule.isDataAvailable()){
     gpsModule.displayLocation();
+    mpu6050Module.readSample();
     solarModule.displaySolarPosition(gpsModule.getTime(),gpsModule.getDate(),gpsModule.lat(),gpsModule.lon());
   }
   
@@ -58,4 +90,8 @@ void loop()
     while (true)
       ;
   }
+  
+  updateOrientation();
+  calculateDesiredAngles();
+  updateSolarPanelOrientation();
 }
