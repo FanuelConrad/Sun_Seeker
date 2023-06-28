@@ -5,7 +5,7 @@
 
 // Pin numbers for the servo motors
 #define PAN_SERVO_PIN 18
-#define TILT_SERVO_PIN 33
+#define TILT_SERVO_PIN 19
 
 // servo object for pan and tilt movements
 Servo panServo;
