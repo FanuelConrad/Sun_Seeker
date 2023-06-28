@@ -15,9 +15,6 @@ MPU6050Module mpu6050Module;
 // number of decimal digits to print
 const uint8_t digits = 3;
 
-// A solar position structure to demonstrate strong complete positions
-// SolarPosition currentLocation(gps.location.lat(), gps.location.lng());
-
 // Constants for the solar panel setup
 const float MAX_PAN_ANGLE = 180.0;
 const float MAX_TILT_ANGLE = 90.0;
