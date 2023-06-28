@@ -4,8 +4,8 @@
 #include <Servo.h>
 
 // Pin numbers for the servo motors
-#define PAN_SERVO_PIN 9
-#define TILT_SERVO_PIN 10
+#define PAN_SERVO_PIN 18
+#define TILT_SERVO_PIN 33
 
 // servo object for pan and tilt movements
 Servo panServo;

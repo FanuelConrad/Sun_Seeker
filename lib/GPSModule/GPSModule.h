@@ -11,13 +11,14 @@ class GPSModule
 public:
     GPSModule(int rxPin, int txPin, uint32_t baudRate);
     void begin();
+    bool isGPSModuleConnected();
     void update();
     bool isDataAvailable();
     void displayLocation();
     int charsProcessed();
     tmElements_t getTime();
     tmElements_t getDate();
-    float  lat();
+    float lat();
     float lon();
 
 private:
@@ -27,8 +28,6 @@ private:
     uint32_t baudRate;
     TinyGPSPlus gps;
     SoftwareSerial ss;
-
-    
 };
 
 #endif
